@@ -33,7 +33,7 @@ function init() {
     }
 
     // Create the card slots
-    var categories = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7'];
+    var categories = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6'];
 
     for (var i = 1; i <= categories.length; i++) {
         $('<div>' + categories[i - 1] + '</div>').data('reward', i).appendTo('#categoryHolder');
@@ -60,8 +60,6 @@ function generateReward(id) {
 }
 
 
-
-
 function handleCardDrop(event, ui) {
     var slotArr = $(this).data('reward').split('-');
     var slotNumber = slotArr[1];
@@ -72,13 +70,18 @@ function handleCardDrop(event, ui) {
     // on top of the slot, and prevent it being dragged
     // again
     if (slotNumber == cardNumber) {
-        $element = ui.helper.clone();
-        $element.draggable('option', 'revert', false);
-        $element.attr("id", cardNumber + 1);
-        $element.selectable();
-        $element.addClass('mapped');
-        $element.appendTo(this);
-        //$element.position({ of: $(this), my: 'left top', at: 'left top' });
+        ui.draggable.addClass( 'correct' );
+        //ui.draggable.draggable( 'disable' );
+        //$(this).droppable( 'disable' );
+        ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+        ui.draggable.draggable( 'option', 'revert', false );
+        // $element = ui.helper.clone();
+        // $element.draggable('option', 'revert', false);
+        // $element.attr("id", cardNumber + 1);
+        // $element.selectable();
+        // $element.addClass('mapped');
+        // $element.appendTo(this);
+        // //$element.position({ of: $(this), my: 'left top', at: 'left top' });
     }
     else {
         ui.draggable.removeClass('mapped');
