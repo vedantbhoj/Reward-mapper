@@ -1,4 +1,4 @@
-# Miles-Challenge
+# Challenge
 Map the Rewards with the Categories
 ## Known bugs:
 1. jQuery UI Draggable is not clonned correctly
